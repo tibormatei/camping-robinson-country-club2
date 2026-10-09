@@ -1,0 +1,28 @@
+{
+    "langCode": "hu",
+    "pageName": "Camping Robinson Oradea",
+    "menu": "Menü",
+    "rentalDetails": {
+        "tentDetails": {
+            "personHeader": "Sátor",
+            "lei": "Lei",
+            "eur": "Euró",
+            "priceDetail": " / Személy",
+            "personName": "Személy"
+        },
+        "trailerDetails": {
+            "personHeader": "Lakókocsi",
+            "lei": "Lei",
+            "eur": "Euró",
+            "personName": "Személy"
+        },
+        "dogDetails": {
+            "dog": "Kutya",
+            "lei": "Lei",
+            "eur": "Euró",
+            "priceDetail": " / Éjszaka"
+        },
+        "priceInformation": "Az árak tartalmazzák az összes szolgáltatást.",
+        "checkOutinformation": "Kijelentkezés 10:30-ig."
+    }
+}

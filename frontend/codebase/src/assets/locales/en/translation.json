@@ -1,0 +1,28 @@
+{
+    "langCode": "en",
+    "pageName": "Camping Robinson Oradea",
+    "menu": "Menu",
+    "rentalDetails": {
+        "tentDetails": {
+            "personHeader": "Tent",
+            "lei": "Lei",
+            "eur": "Eur",
+            "priceDetail": " / Person",
+            "personName": "Person"
+        },
+        "trailerDetails": {
+            "personHeader": "Camper Trailer",
+            "lei": "Lei",
+            "eur": "Eur",
+            "personName": "Person"
+        },
+        "dogDetails": {
+            "dog": "Dog",
+            "lei": "Lei",
+            "eur": "Eur",
+            "priceDetail": " / Night"
+        },
+        "priceInformation": "Prices contains all facilities.",
+        "checkOutinformation": "Check out till 10:30."
+    }
+}

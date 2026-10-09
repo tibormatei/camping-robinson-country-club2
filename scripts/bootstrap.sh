@@ -45,7 +45,7 @@ info() {
 
 # Print a warning message.
 warning() {
-  echo "  ⚠️   $1"
+  echo "  ⚠️  $1"
 }
 
 # Print an error message and exit.
