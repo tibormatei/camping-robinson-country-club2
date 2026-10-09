@@ -28,22 +28,22 @@ BUN_INSTALL_ONLY=0
 
 # Print a step header.
 step() {
-  echo "    💾 $1"
+  echo "  💾  $1"
 }
 
 # Print a completed message.
 completed() {
-  echo "    ⭐ $1"
+  echo "  ⭐  $1"
 }
 
 # Print an info message.
 info() {
-  echo "    💤 $1"
+  echo "  💤  $1"
 }
 
 # Print an error message and exit.
 die() {
-  echo "    💢 $1" >&2
+  echo "  💢  $1" >&2
   exit 1
 }
 
