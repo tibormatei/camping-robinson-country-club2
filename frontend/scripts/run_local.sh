@@ -15,7 +15,9 @@ set -euo pipefail  # The script will stop on the first error.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 FRONTEND_DIR="$(cd "${SCRIPT_DIR}/../codebase" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
+ENV_FILE="${ROOT_DIR}/.env"
 SETUP_DEV_ENV_FILE="setup-dev-env.js"
 
 # Options
@@ -129,6 +131,23 @@ install_frontend() {
   completed "Frontend installed"
 }
 
+load_env() {
+  if [ -f "${ENV_FILE}" ]; then
+    # Allow unset variables while sourcing: the file may refer to variables that are not set.
+    set +u
+    # Export every variable that the file defines.
+    set -a
+    # shellcheck disable=SC1090
+    source "${ENV_FILE}"
+    set +a
+    set -u
+
+    completed "Environment loaded from: ${ENV_FILE}"
+  else
+    info "No .env file found, using the existing environment variables."
+  fi
+}
+
 start_dev_server() {
   info "Starting development server, press Ctrl+C to stop!"
   cd "${FRONTEND_DIR}"
@@ -149,6 +168,9 @@ step "Installing frontend"
 install_frontend
 
 if [ "${BUN_INSTALL_ONLY}" -eq 0 ]; then
+  step "Loading environment"
+  load_env
+
   step "Starting development server"
   start_dev_server
 fi
