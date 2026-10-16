@@ -12,5 +12,5 @@ set -euo pipefail  # The script will stop on the first error.
 echo "👣 Syncing node_modules with bun.lock ..."
 bun install --frozen-lockfile
 
-echo "🏃‍♀️ Starting development server ..."
+echo "🚀 Starting development server ..."
 exec bun run dev
