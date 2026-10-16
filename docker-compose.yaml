@@ -1,0 +1,24 @@
+# Local development environment:
+# Run: docker compose up --build
+name: camping-robinson-country-club
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        APP_PORT: ${APP_PORT}
+    env_file:
+      # equivalent to: environment: volume, but env_file load all variables from .env file.
+      - .env
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    volumes:
+      # The source code: edits on the host reach the container (hot reload).
+      - ./frontend/codebase:/app/codebase
+      # node_modules lives in a named volume, so the host's one never shadows it.
+      - frontend_node_modules:/app/codebase/node_modules
+
+volumes:
+  frontend_node_modules:

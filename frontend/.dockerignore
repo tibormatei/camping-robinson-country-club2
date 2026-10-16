@@ -1,0 +1,20 @@
+# ==================================================================
+# .dockerignore - Camping Robinson Country Club frontend
+# ==================================================================
+
+# ------------------------------------------------------------------
+# Node / Bun
+codebase/node_modules
+codebase/package-lock.json
+codebase/dist
+
+# ------------------------------------------------------------------
+# TypeScript
+codebase/.tmp
+codebase/*.tsbuildinfo
+
+# ------------------------------------------------------------------
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
