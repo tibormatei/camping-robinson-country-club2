@@ -1,0 +1,54 @@
+/**********************************************************
+  Copyright (c) 2026 Matei Tibor. All rights reserved.
+  Description: CampingRobinsonCountryClub2 global css style
+  Version: 1.0
+**********************************************************/
+
+/*----------------------
+  Variables
+------------------------*/
+:root {
+    --color-header-background: #7BB369;
+    --color-footer-background: #eaffe5;
+    --color-footer-text: #075c62;
+    --color-main-text: #fff1d6;
+}
+
+/*----------------------
+  Base
+------------------------*/
+html {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    margin: 0px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 2px solid;
+}
