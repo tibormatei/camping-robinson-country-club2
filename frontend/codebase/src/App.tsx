@@ -1,4 +1,5 @@
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
             </main>
 
             {/* Footer Section Begin */}
-            {/* The <Footer /> component will be placed here. */}
+            <Footer />
         </>
     );
 }
