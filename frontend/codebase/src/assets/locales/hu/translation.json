@@ -1,7 +1,12 @@
 {
-    "langCode": "hu",
     "pageName": "Camping Robinson Oradea",
-    "menu": "Menü",
+    "headerDetails": {
+        "menu": "Menü",
+        "home": "Főoldal",
+        "contact": "Kapcsolatok",
+        "language": "Nyelv",
+        "toggleMenu": "Menü megnyitása/bezárása"
+    },
     "rentalDetails": {
         "tentDetails": {
             "personHeader": "Sátor",

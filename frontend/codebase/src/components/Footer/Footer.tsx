@@ -8,7 +8,7 @@ export default function Footer() {
                 <p>Camping Robinson Country Oradea, </p>
                 <p>Tel: +40 764 523 950</p>
             </div>
-            <p>©Copyright 2025 by Tibor. All rights reversed.</p>
+            <p>©Copyright 2026 by Tibor. All rights reserved.</p>
         </footer>
     );
 }

@@ -1,7 +1,12 @@
 {
-    "langCode": "en",
     "pageName": "Camping Robinson Oradea",
-    "menu": "Menu",
+    "headerDetails": {
+        "menu": "Menu",
+        "home": "Home",
+        "contact": "Contact",
+        "language": "Language",
+        "toggleMenu": "Toggle menu"
+    },
     "rentalDetails": {
         "tentDetails": {
             "personHeader": "Tent",
