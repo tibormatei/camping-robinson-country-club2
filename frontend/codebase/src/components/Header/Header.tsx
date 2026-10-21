@@ -16,7 +16,7 @@ export default function Header() {
                     </div>
                     <div className="header-top-menu">
                         <select className="header-top-language" aria-label="Language" defaultValue="en">
-                            <option selected value="en">English</option>
+                            <option value="en">English</option>
                         </select>
                     </div>
                 </div>
