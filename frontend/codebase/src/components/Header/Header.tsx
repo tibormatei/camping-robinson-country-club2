@@ -1,12 +1,18 @@
+import { useTranslation } from "react-i18next";
+
 import logo from "@/assets/images/logo.jpg";
+import Languages from "@/components/Languages/Languages";
+import { TranslationKeys } from "@/i18n/TranslationKeys";
 
 import "./Header.css";
 
 
 export default function Header() {
+    const { t } = useTranslation();
+
     return (
         <header className="header">
-            <button type="button" className="header-mobile-menu-button" aria-label="Toggle menu">≡</button>
+            <button type="button" className="header-mobile-menu-button" aria-label="Toggle menu">≡ {t(TranslationKeys.HEADER_DETAILS.MENU)}</button>
             <div className="header-mobile-menu-container">
                 {/* Menu bar */}
                 <div className="header-top-container">
@@ -15,17 +21,15 @@ export default function Header() {
                         <h1>Camping Robinson Country Club</h1>
                     </div>
                     <div className="header-top-menu">
-                        <select className="header-top-language" aria-label="Language" defaultValue="en">
-                            <option value="en">English</option>
-                        </select>
+                        <Languages className="header-top-language" />
                     </div>
                 </div>
                 {/* Navigation bar */}
                 <div className="header-nav-container">
                     <nav className="header-nav-menu">
                         <ul className="header-menu">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#footer">Contacts</a></li>
+                            <li><a href="#">{t(TranslationKeys.HEADER_DETAILS.HOME)}</a></li>
+                            <li><a href="#footer">{t(TranslationKeys.HEADER_DETAILS.CONTACT)}</a></li>
                         </ul>
                     </nav>
                 </div>
