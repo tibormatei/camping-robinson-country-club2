@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 
 import { TranslationKeys } from "@/i18n/TranslationKeys";
 import TableTent from "@/components/TableTent/TableTent";
-import TableTrailer from "../TableTrailer/TableTrailer";
-import TableDog from "../TableDog/TableDog";
+import TableTrailer from "@/components/TableTrailer/TableTrailer";
+import TableDog from "@/components/TableDog/TableDog";
 
 import "./RentalDetails.css";
 
