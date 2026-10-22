@@ -12,13 +12,15 @@ export default function Header() {
 
     return (
         <header className="header">
-            <button type="button" className="header-mobile-menu-button" aria-label="Toggle menu">≡ {t(TranslationKeys.HEADER_DETAILS.MENU)}</button>
+            <button type="button" className="header-mobile-menu-button" aria-label={ t(TranslationKeys.HEADER_DETAILS.TOGGLE_MENU) }>
+                ≡ { t(TranslationKeys.HEADER_DETAILS.MENU) }
+            </button>
             <div className="header-mobile-menu-container">
                 {/* Menu bar */}
                 <div className="header-top-container">
                     <div id="header-top-logo" className="header-top-logo">
-                        <img src={logo} alt="Camping Robinson Country Club logo" />
-                        <h1>Camping Robinson Country Club</h1>
+                        <img src={ logo } alt="Camping Robinson Country Club logo" />
+                        <h1>{ t(TranslationKeys.PAGE_NAME) }</h1>
                     </div>
                     <div className="header-top-menu">
                         <Languages className="header-top-language" />
@@ -28,8 +30,8 @@ export default function Header() {
                 <div className="header-nav-container">
                     <nav className="header-nav-menu">
                         <ul className="header-menu">
-                            <li><a href="#">{t(TranslationKeys.HEADER_DETAILS.HOME)}</a></li>
-                            <li><a href="#footer">{t(TranslationKeys.HEADER_DETAILS.CONTACT)}</a></li>
+                            <li><a href="#">{ t(TranslationKeys.HEADER_DETAILS.HOME) }</a></li>
+                            <li><a href="#footer">{ t(TranslationKeys.HEADER_DETAILS.CONTACT) }</a></li>
                         </ul>
                     </nav>
                 </div>

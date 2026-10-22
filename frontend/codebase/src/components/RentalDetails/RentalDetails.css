@@ -1,0 +1,72 @@
+/**********************************************************
+  Copyright (c) 2026 Matei Tibor. All rights reserved.
+  Description: RentalDetails component CSS style.
+  Version: 1.0
+**********************************************************/
+
+/*----------------------
+  RentalDetails general
+------------------------*/
+#rentaldetails {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex: 1;
+    width: 100%;
+}
+
+#rentaldetails tr {
+    text-align: center;
+}
+
+/*----------------------
+  Desktop
+------------------------*/
+@media only screen and (min-width : 1025px) {
+
+    #rentaldetails > section {
+        padding-top: 1.5rem;
+        padding-left: 30%;
+        padding-right: 30%;
+    }
+
+    #rentaldetails table {
+        width: 100%;
+    }
+
+    #rentaldetails p {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    td {
+        padding: 7px;
+    }
+}
+
+/*----------------------
+  Mobile and Tablets
+------------------------*/
+@media only screen and (min-width: 380px) and (max-width: 1024px) {
+
+    #rentaldetails > section {
+        padding-top: 2%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    #rentaldetails table {
+        width: 100%;
+    }
+
+    #rentaldetails p {
+        margin-left: 0;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
+    td {
+        padding: 3px;
+    }
+}
