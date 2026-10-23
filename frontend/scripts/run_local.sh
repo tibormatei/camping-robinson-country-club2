@@ -3,6 +3,9 @@
 # Camping Robinson Country Club 2 - run the frontend locally.
 #
 # Steps:
+# 1. Installing bun, if it is not installed yet.
+# 2. Installing frontend.
+# [3. Loads the environment file and starts the development server.]
 #
 # Usage: ./frontend/scripts/run_local.sh [--install-only] [--help]
 #

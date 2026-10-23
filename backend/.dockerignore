@@ -1,0 +1,20 @@
+# ==================================================================
+# .dockerignore - Camping Robinson Country Club backend
+# ==================================================================
+
+# ------------------------------------------------------------------
+# Python
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/*.pyc
+codebase/tests
+
+# ------------------------------------------------------------------
+# Environment files
+codebase/.git
+codebase/.gitignore
+codebase/.gitattributes
+codebase/Dockerfile
+.env

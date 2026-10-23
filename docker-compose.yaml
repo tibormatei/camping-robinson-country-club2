@@ -3,6 +3,22 @@
 name: camping-robinson-country-club
 
 services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        API_PORT: ${API_PORT}
+    env_file:
+      # equivalent to: environment: volume, but env_file load all variables from .env file.
+      - .env
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    volumes:
+      # The source code: edits on the host reach the container (--reload).
+      # The venv is in /app/.venv, outside this mount, so nothing shadows it.
+      - ./backend/codebase:/app/codebase
+
   frontend:
     build:
       context: ./frontend
