@@ -20,6 +20,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKEND_DIR="$(cd "${SCRIPT_DIR}/../codebase" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
+TOML_FILE="${BACKEND_DIR}/pyproject.toml"
+UV_LOCK_FILE="${BACKEND_DIR}/uv.lock"
 ENV_FILE="${ROOT_DIR}/.env"
 ENTRYPOINT_FILE="${SCRIPT_DIR}/entrypoint.sh"
 
@@ -127,7 +129,7 @@ install_uv() {
 }
 
 update_lock() {
-  if [ ! -f "${BACKEND_DIR}/pyproject.toml" ]; then
+  if [ ! -f "${TOML_FILE}" ]; then
     die "pyproject.toml not found in ${BACKEND_DIR}"
   fi
 
@@ -137,7 +139,7 @@ update_lock() {
 }
 
 install_backend() {
-  if [ ! -f "${BACKEND_DIR}/pyproject.toml" ]; then
+  if [ ! -f "${TOML_FILE}" ]; then
     die "pyproject.toml not found in ${BACKEND_DIR}"
   fi
  
@@ -181,7 +183,7 @@ step "Installing uv"
 install_uv
 
 # # Only with --lock, or when there is no uv.lock yet. (First run)
-if [ "${UPDATE_LOCK}" -eq 1 ] || [ ! -f "${BACKEND_DIR}/uv.lock" ]; then
+if [ "${UPDATE_LOCK}" -eq 1 ] || [ ! -f "${UV_LOCK_FILE}" ]; then
   step "Updating uv.lock"
   update_lock
 fi

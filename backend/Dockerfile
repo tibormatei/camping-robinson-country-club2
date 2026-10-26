@@ -60,9 +60,13 @@ USER appuser
 
 # Configure variables
 ARG API_PORT=4000
+ARG API_HOST="0.0.0.0"
+ARG APP_LOG_LEVEL="info"
 
 # Set environment variables
 ENV API_PORT=${API_PORT}
+ENV API_HOST=${API_HOST}
+ENV APP_LOG_LEVEL=${APP_LOG_LEVEL}
 
 # Expose application port
 EXPOSE ${API_PORT}
