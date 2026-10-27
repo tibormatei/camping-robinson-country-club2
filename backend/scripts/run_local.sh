@@ -81,7 +81,7 @@ parse_args() {
       --install-only)
         UV_INSTALL_ONLY=1
         ;;
-      --lock)
+      --update-lock)
         UPDATE_LOCK=1
         ;;
       --help)
@@ -191,7 +191,7 @@ fi
 step "Installing backend"
 install_backend
 
-if [ "${INSTALL_ONLY}" -eq 0 ]; then
+if [ "${UV_INSTALL_ONLY}" -eq 0 ]; then
   step "Loading environment"
   load_env
  

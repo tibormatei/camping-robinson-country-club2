@@ -1,8 +1,8 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-from boot_config import BootConfig
+from robinson.config.models.boot_config import BootConfig
 
 
 @dataclass(frozen=True)
-class Config():
-    boot: BootConfig = BootConfig()
+class Config:
+    boot: BootConfig = field(default_factory=BootConfig)
