@@ -9,5 +9,5 @@ set -euo pipefail  # The script will stop on the first error.
 # =============================================================================
 
 echo "🚀 Starting application ..."
-exec python robinson/main.py --mode=DEVELOPMENT
+exec python -m robinson.main --mode=DEVELOPMENT
 # exec uvicorn app.main:app --host 0.0.0.0 --port "${BACKEND_PORT:-4000}" --reload

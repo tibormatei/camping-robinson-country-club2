@@ -1,10 +1,10 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-from app_config import AppConfig
+from robinson.config.models.app_config import AppConfig
 
 
 @dataclass(frozen=True)
-class BootConfig():
+class BootConfig:
     version: int = 1
-    app: AppConfig = AppConfig()
+    app: AppConfig = field(default_factory=AppConfig)
     # db: DbConfig
