@@ -3,6 +3,9 @@ from fastapi import FastAPI
 from robinson.config.loader import get_config
 
 
+# Init
+api_prefix: str = get_config().boot.app.api.prefix
+
 # FastAPI app initialization
 app = FastAPI(
     root_path=get_config().boot.app.api.root,
@@ -12,7 +15,7 @@ app = FastAPI(
     redirect_slashes=False,
 )
 
-@app.get("/api/health")
+@app.get(f"{api_prefix}/health")
 async def health() -> dict[str, str]:
     return {"status": "ok"}
 
@@ -24,4 +27,4 @@ api_routers = [
 ]
 
 for router in api_routers:
-    app.include_router(router)
+    app.include_router(router, prefix=api_prefix)

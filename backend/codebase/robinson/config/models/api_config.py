@@ -9,4 +9,5 @@ class ApiConfig:
     port: int = 4000
     root: str = ""
     threads: int = 12
+    prefix: str = "/api"
     schema: OpenApiSchemaConfig = field(default_factory=OpenApiSchemaConfig)
