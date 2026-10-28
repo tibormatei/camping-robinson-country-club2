@@ -13,5 +13,15 @@ app = FastAPI(
 )
 
 @app.get("/api/health")
-def health() -> dict[str, str]:
+async def health() -> dict[str, str]:
     return {"status": "ok"}
+
+# Routes initialization
+from robinson.api.impl.rental import router as rental_router
+
+api_routers = [
+    rental_router,
+]
+
+for router in api_routers:
+    app.include_router(router)
