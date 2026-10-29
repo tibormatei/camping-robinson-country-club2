@@ -29,5 +29,9 @@
         },
         "priceInformation": "Prețurile include toate facilitățile.",
         "checkOutInformation": "Check out până la 10:30."
+    },
+    "apiCall": {
+        "loading": "Se încarcă...",
+        "loadError": "Datele nu au putut fi încărcate."
     }
 }

@@ -29,5 +29,9 @@
         },
         "priceInformation": "Prices contains all facilities.",
         "checkOutInformation": "Check out till 10:30."
+    },
+    "apiCall": {
+        "loading": "Loading...",
+        "loadError": "The data could not be loaded."
     }
 }

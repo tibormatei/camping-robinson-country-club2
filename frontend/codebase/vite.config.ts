@@ -30,5 +30,13 @@ export default defineConfig({
       usePolling: true,
       interval: 1000,
     },
+    proxy: {
+      // Development only: the browser calls the relative "/api/..." URLs, Vite forwards them to the backend.
+      // In production does the same, so no frontend code depends on this block.
+      "/api": {
+        target: process.env.API_PROXY_TARGET || "http://localhost:4000",
+        changeOrigin: true,
+      },
+    },
   }
 });

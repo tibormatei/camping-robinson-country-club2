@@ -30,6 +30,8 @@ services:
     env_file:
       # equivalent to: environment: volume, but env_file load all variables from .env file.
       - .env
+    environment:
+      API_PROXY_TARGET: http://backend:${API_PORT}
     ports:
       - "${APP_PORT}:${APP_PORT}"
     volumes:
