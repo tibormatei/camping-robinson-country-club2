@@ -31,6 +31,10 @@ export const TranslationKeys = {
         PRICE_INFORMATION: "rentalDetails.priceInformation",
         CHECK_OUT_INFORMATION: "rentalDetails.checkOutInformation",
     },
+    API_CALL: {
+        LOADING: "apiCall.loading",
+        LOAD_ERROR: "apiCall.loadError",
+    },
 } as const;
 
 /**

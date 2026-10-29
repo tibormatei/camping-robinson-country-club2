@@ -29,5 +29,9 @@
         },
         "priceInformation": "Az árak tartalmazzák az összes szolgáltatást.",
         "checkOutInformation": "Kijelentkezés 10:30-ig."
+    },
+    "apiCall": {
+        "loading": "Betöltés...",
+        "loadError": "Az adatokat nem sikerült betölteni."
     }
 }
