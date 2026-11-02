@@ -1,36 +1,25 @@
 import { useEffect, useState } from "react";
 
-import { type ApiGetStatus } from "@/types/apiGetStatus"
+import { type RentalDetailsApiGetStatus } from "@/types/rentalDetailsApiGetStatus"
 import { getTent, type TentData } from "@/api/rental/tent";
 
 
-
-export type UseTentResult = {
-    status: ApiGetStatus;
-    data: TentData | null;
-};
-
-export function useTent(): UseTentResult {
-    const [status, setStatus] = useState<ApiGetStatus>("loading");
-    const [data, setData] = useState<TentData | null>(null);
+export function useTent(): RentalDetailsApiGetStatus<TentData> {
+    const [tentDataState, setTentDataState] = useState<RentalDetailsApiGetStatus<TentData>>({ status: "loading" });
 
     useEffect(() => {
         const controller = new AbortController();
 
         async function load() {
-            setStatus("loading");
-            setData(null);
-
             try {
-                const tentData = await getTent(controller.signal);
-                setData(tentData);
-                setStatus("success");
+                const data = await getTent(controller.signal);
+                setTentDataState({ status: "success", data: data });
             }
             catch (err: unknown) {
                 if (controller.signal.aborted) {
                     return;
                 }
-                setStatus("error");
+                setTentDataState({ status: "error" });
             }
         }
 
@@ -40,5 +29,5 @@ export function useTent(): UseTentResult {
         return () => controller.abort();
     }, []);
 
-    return { status, data };
+    return tentDataState;
 }

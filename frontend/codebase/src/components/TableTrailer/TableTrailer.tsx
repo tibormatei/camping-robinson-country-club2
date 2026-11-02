@@ -2,9 +2,43 @@ import { useTranslation } from "react-i18next";
 
 import { TranslationKeys } from "@/i18n/TranslationKeys";
 
+import { useTrailers } from "@/components/TableTrailer/useTrailer"
+
 
 export default function TableTrailer() {
     const { t } = useTranslation();
+    const trailers = useTrailers();
+
+    function renderTableTrailersRows() {
+        if (trailers.status === "loading") {
+            return (
+                <tr>
+                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
+                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
+                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
+                </tr>
+            );
+        }
+        if (trailers.status === "error") {
+            return (
+                <tr>
+                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
+                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
+                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
+                </tr>
+            );
+        }
+
+        const trailersList = trailers.data?.trailers ?? [];
+
+        return trailersList.map((trailer) => (
+            <tr>
+                <td> { trailer.trailer_capacity } { t(TranslationKeys.RENTAL_DETAILS.TRAILER_DETAILS.PERSON_NAME) }</td>
+                <td>{ trailer.lei_price }</td>
+                <td>{ trailer.eur_price }</td>
+            </tr>
+        ));
+    }
 
     return (
         <table id="rentaldetails-trailer-table" className="rentaldetails-table">
@@ -16,7 +50,7 @@ export default function TableTrailer() {
                 </tr>
             </thead>
             <tbody>
-                {/* {{trailerTableRows}} */}
+                { renderTableTrailersRows() }
             </tbody>
         </table>
     );
