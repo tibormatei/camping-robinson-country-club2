@@ -9,8 +9,50 @@ export default function TableTent() {
     const { t } = useTranslation();
     const tent = useTent();
 
+    function renderTableTentRows() {
+        if (tent.status === "loading") {
+            return <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOADING) }</td></tr>;
+        }
+        if (tent.status === "error") {
+            return <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td></tr>;
+        }
+
+        const tentCapacities = tent.data?.tent_capacities ?? [];
+        const leiPricePerPerson = tent.data?.lei_price_per_person ?? 0;
+        const eurPricePerPerson = tent.data?.eur_price_per_person ?? 0;
+
+        if (tentCapacities.length === 0) {
+            return (
+                <tr>
+                    <td></td>
+                    <td>{ leiPricePerPerson }</td>
+                    <td>{ eurPricePerPerson }</td>
+                </tr>
+            )
+        }
+        else {
+            return tentCapacities.map((capacity, index) => (
+                <tr key={ capacity }>
+                    <td>{ capacity } { t(TranslationKeys.RENTAL_DETAILS.TENT_DETAILS.PERSON_NAME) }</td>
+                    {
+                        index === 0 && (
+                            <>
+                                <td rowSpan={ tentCapacities.length }>
+                                    { leiPricePerPerson }
+                                </td>
+                                <td rowSpan={ tentCapacities.length }>
+                                    { eurPricePerPerson }
+                                </td>
+                            </>
+                        )
+                    }
+                </tr>
+            ));
+        }
+    }
+
     return (
-            <table id="rentaldetails-tent-table" className="rentaldetails-table">
+        <table id="rentaldetails-tent-table" className="rentaldetails-table">
             <thead>
                 <tr>
                     <th id="rentaldetails-tent-table-thead-personheader">{ t(TranslationKeys.RENTAL_DETAILS.TENT_DETAILS.PERSON_HEADER) }</th>
@@ -23,40 +65,7 @@ export default function TableTent() {
                 </tr>
             </thead>
             <tbody>
-                {
-                    tent.status === "loading" ? (
-                        <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOADING) }</td></tr>
-                    ) : tent.status === "error" ? (
-                        <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td></tr>
-                    ) : (
-                        (tent.data?.tent_capacities ?? []).length > 0 ? (
-                            <>
-                                <tr>
-                                    <td>{tent.data?.tent_capacities[0]} { t(TranslationKeys.RENTAL_DETAILS.TENT_DETAILS.PERSON_NAME) }</td>
-                                    <td rowSpan={ tent.data?.tent_capacities.length }>
-                                        { tent.data?.lei_price_per_person }
-                                    </td>
-                                    <td rowSpan={ tent.data?.tent_capacities.length }>
-                                        { tent.data?.eur_price_per_person }
-                                    </td>
-                                </tr>
-                                {
-                                    tent.data?.tent_capacities.slice(1).map((capacity) => (
-                                        <tr key={ capacity }>
-                                            <td>{ capacity } { t(TranslationKeys.RENTAL_DETAILS.TENT_DETAILS.PERSON_NAME) }</td>
-                                        </tr>
-                                    ))
-                                }
-                            </>
-                        ) : (
-                            <tr>
-                                <td></td>
-                                <td>{ tent.data?.lei_price_per_person }</td>
-                                <td>{ tent.data?.eur_price_per_person }</td>
-                            </tr>
-                        )
-                    )
-                }
+                { renderTableTentRows() }
             </tbody>
         </table>
     );
