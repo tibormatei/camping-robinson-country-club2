@@ -1,9 +1,9 @@
 from fastapi import APIRouter, status
 
-from robinson.services.data_models.tent import TentModel
-from robinson.services.data_models.trailers import TrailersModel
-from robinson.services.data_models.trailer import TrailerModel
 from robinson.services.data_models.dog import DogModel
+from robinson.services.data_models.tent import TentModel
+from robinson.services.data_models.trailer import TrailerModel
+from robinson.services.data_models.trailers import TrailersModel
 
 
 # ---------------------------

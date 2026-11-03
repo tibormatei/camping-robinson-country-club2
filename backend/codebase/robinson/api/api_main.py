@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 
+# Routes initialization
+from robinson.api.impl.rental import router as rental_router
+
 from robinson.config.loader import get_config
 
 
@@ -18,9 +21,6 @@ app = FastAPI(
 @app.get(f"{api_prefix}/health")
 async def health() -> dict[str, str]:
     return {"status": "ok"}
-
-# Routes initialization
-from robinson.api.impl.rental import router as rental_router
 
 api_routers = [
     rental_router,

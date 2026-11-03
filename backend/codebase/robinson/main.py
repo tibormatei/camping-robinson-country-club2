@@ -1,9 +1,8 @@
+from argparse import ArgumentParser
+
 import uvicorn
 
 from robinson.config.loader import get_config
-
-from argparse import ArgumentParser
-
 
 
 if __name__ == "__main__":

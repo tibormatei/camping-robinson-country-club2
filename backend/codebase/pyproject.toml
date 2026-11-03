@@ -26,7 +26,7 @@ dev = [
 packages = ["robinson"]
 
 [tool.ruff]
-line-length = 120
+line-length = 130
 target-version = "py312"
 
 [tool.ruff.lint]
@@ -41,6 +41,9 @@ select = [
     "N"    # pep8-naming
 ]
 ignore = ["B008"]  # Depends() in argument defaults is normal in FastAPI
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
 
 [tool.mypy]
 python_version = "3.12"

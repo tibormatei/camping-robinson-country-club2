@@ -1,5 +1,5 @@
-from .models.config import Config
 from .loader import get_config
+from .models.config import Config
 
 
 __all__ = [
