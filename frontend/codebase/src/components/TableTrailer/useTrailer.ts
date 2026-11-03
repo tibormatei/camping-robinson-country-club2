@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { type RentalDetailsApiGetStatus } from "@/types/rentalDetailsApiGetStatus"
+import { type ApiGetState } from "@/types/apiGetState"
 import { getTrailers, type TrailersData } from "@/api/rental/trailer";
 
 
-export function useTrailers(): RentalDetailsApiGetStatus<TrailersData> {
-    const [trailersDataState, setTrailersDataState] = useState<RentalDetailsApiGetStatus<TrailersData>>({ status: "loading" });
+export function useTrailers(): ApiGetState<TrailersData> {
+    const [trailersDataState, setTrailersDataState] = useState<ApiGetState<TrailersData>>({ status: "loading" });
 
     useEffect(() => {
         const controller = new AbortController();
@@ -15,7 +15,7 @@ export function useTrailers(): RentalDetailsApiGetStatus<TrailersData> {
                 const data = await getTrailers(controller.signal);
                 setTrailersDataState({ status: "success", data: data });
             }
-            catch (err: unknown) {
+            catch {
                 if (controller.signal.aborted) {
                     return;
                 }
@@ -25,7 +25,7 @@ export function useTrailers(): RentalDetailsApiGetStatus<TrailersData> {
 
         void load();
 
-        // / Cancels the request so no state update happens if, runs on unmount.
+        // Cancels the pending request when the component unmounts, so no state update happens afterwards.
         return () => controller.abort();
     }, []);
 
