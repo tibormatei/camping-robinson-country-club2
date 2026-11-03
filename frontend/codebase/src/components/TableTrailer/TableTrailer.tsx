@@ -32,7 +32,7 @@ export default function TableTrailer() {
         const trailersList = trailers.data?.trailers ?? [];
 
         return trailersList.map((trailer) => (
-            <tr>
+            <tr key={ trailer.trailer_capacity }>
                 <td> { trailer.trailer_capacity } { t(TranslationKeys.RENTAL_DETAILS.TRAILER_DETAILS.PERSON_NAME) }</td>
                 <td>{ trailer.lei_price }</td>
                 <td>{ trailer.eur_price }</td>
