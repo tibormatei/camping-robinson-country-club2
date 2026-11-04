@@ -11,22 +11,10 @@ export default function TableTrailer() {
 
     function renderTableTrailersRows() {
         if (trailers.status === "loading") {
-            return (
-                <tr>
-                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
-                </tr>
-            );
+            return <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOADING) }</td></tr>;
         }
         if (trailers.status === "error") {
-            return (
-                <tr>
-                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
-                </tr>
-            );
+            return <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td></tr>;
         }
 
         const trailersList = trailers.data?.trailers ?? [];

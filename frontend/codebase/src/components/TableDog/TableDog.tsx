@@ -11,22 +11,10 @@ export default function TableDog() {
 
     function renderTableDogRows() {
         if (dog.status === "loading") {
-            return (
-                <tr>
-                    <td>{ t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.DOG) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOADING) }</td>
-                </tr>
-            )
+            return <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOADING) }</td></tr>;
         }
         if (dog.status === "error") {
-            return (
-                <tr>
-                    <td>{ t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.DOG) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
-                    <td>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td>
-                </tr>
-            )
+            return <tr><td colSpan={3}>{ t(TranslationKeys.API_CALL.LOAD_ERROR) }</td></tr>;
         }
 
         return (
