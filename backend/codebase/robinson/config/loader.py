@@ -5,6 +5,7 @@ from robinson.config.models.api_config import ApiConfig
 from robinson.config.models.app_config import AppConfig
 from robinson.config.models.boot_config import BootConfig
 from robinson.config.models.config import Config
+from robinson.config.models.swagger_config import SwaggerConfig
 
 
 def _load_config_from_envs() -> Config:
@@ -15,9 +16,13 @@ def _load_config_from_envs() -> Config:
         host=os.environ.get("API_HOST", ApiConfig.host),
         port=int(os.environ.get("API_PORT", ApiConfig.port)),
     )
+    swagger = SwaggerConfig(
+        enabled=os.environ.get("APP_ENABLE_SWAGGER", str(SwaggerConfig.enabled)).lower() in ('true', '1', 'yes', 'on'),
+    )
     app = AppConfig(
         api=api,
         log_level=os.environ.get("APP_LOG_LEVEL", AppConfig.log_level),
+        swagger=swagger,
     )
     return Config(boot=BootConfig(app=app))
 
