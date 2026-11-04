@@ -20,8 +20,8 @@ export default function TableDog() {
         return (
             <tr>
                 <td>{ t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.DOG) }</td>
-                <td>{ dog.data.lei_price_per_night } { t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.PRICE_DETAIL) }</td>
-                <td>{ dog.data.eur_price_per_night } { t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.PRICE_DETAIL) }</td>
+                <td>{ dog.data?.lei_price_per_night } { t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.PRICE_DETAIL) }</td>
+                <td>{ dog.data?.eur_price_per_night } { t(TranslationKeys.RENTAL_DETAILS.DOG_DETAILS.PRICE_DETAIL) }</td>
             </tr>
         )
     }
