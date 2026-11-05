@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 
 from robinson.api.impl.rental import router as rental_router
-
 from robinson.config.loader import get_config
 
 
@@ -16,6 +15,7 @@ app = FastAPI(
     description=get_config().boot.app.api.schema.description,
     version=get_config().boot.app.api.schema.version,
     docs_url=f"{api_prefix}/docs" if swagger_enabled else None,
+    redoc_url=None  # f"{api_prefix}/redoc" if swagger_enabled else None,
     openapi_url=f"{api_prefix}/openapi.json" if swagger_enabled else None,
     redirect_slashes=False,
 )

@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import logo from "@/assets/images/logo.jpg";
 import Languages from "@/components/Languages/Languages";
+import TopLogo from "@/components/TopLogo/TopLogo";
 import { TranslationKeys } from "@/i18n/TranslationKeys";
 
 import "./Header.css";
@@ -9,19 +10,24 @@ import "./Header.css";
 
 export default function Header() {
     const { t } = useTranslation();
+    const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
     return (
         <header className="header">
-            <button type="button" className="header-mobile-menu-button" aria-label={ t(TranslationKeys.HEADER_DETAILS.TOGGLE_MENU) }>
+            <button 
+                type="button"
+                className="header-mobile-menu-button"
+                aria-label={ t(TranslationKeys.HEADER_DETAILS.TOGGLE_MENU) }
+                aria-expanded={ menuIsOpen }
+                aria-controls="header-mobile-menu"
+                onClick={ () => setMenuIsOpen(!menuIsOpen) }
+            >
                 ≡ { t(TranslationKeys.HEADER_DETAILS.MENU) }
             </button>
-            <div className="header-mobile-menu-container">
+            <div id="header-mobile-menu" className={ menuIsOpen ? "header-mobile-menu-container mobile-nav-bar-active" : "header-mobile-menu-container" }>
                 {/* Menu bar */}
                 <div className="header-top-container">
-                    <div id="header-top-logo" className="header-top-logo">
-                        <img src={ logo } alt="Camping Robinson Country Club logo" />
-                        <h1>{ t(TranslationKeys.PAGE_NAME) }</h1>
-                    </div>
+                    <TopLogo />
                     <div className="header-top-menu">
                         <Languages className="header-top-language" />
                     </div>
