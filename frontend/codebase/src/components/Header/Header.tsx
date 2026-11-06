@@ -23,6 +23,34 @@ export default function Header() {
         }
     }, [menuIsOpen]);
 
+    useEffect(() => {
+        if (menuIsOpen === true) {
+            const closeMenuOnEscape = (event: KeyboardEvent) => {
+                if (event.key === "Escape") {
+                    setMenuIsOpen(false);
+                }
+            };
+
+            document.addEventListener("keydown", closeMenuOnEscape);
+            return () => document.removeEventListener("keydown", closeMenuOnEscape);
+        }
+    }, [menuIsOpen]);
+
+    useEffect(() => {
+        if (menuIsOpen === true) {
+            const DESKTOP_MEDIA_QUERY: string = "(min-width: 1025px)";
+            const desktopWindow = window.matchMedia(DESKTOP_MEDIA_QUERY);
+            const closeMenuOnDesktopWindow = (event: MediaQueryListEvent) => {
+                if (event.matches) {
+                    setMenuIsOpen(false);
+                }
+            };
+
+            desktopWindow?.addEventListener("change", closeMenuOnDesktopWindow);
+            return () => desktopWindow?.removeEventListener("change", closeMenuOnDesktopWindow);
+        }
+    }, []);
+
     return (
         <header className="header">
             <button 
@@ -47,8 +75,8 @@ export default function Header() {
                 <div className="header-nav-container">
                     <nav className="header-nav-menu">
                         <ul className="header-menu">
-                            <li><a href="#">{ t(TranslationKeys.HEADER_DETAILS.HOME) }</a></li>
-                            <li><a href="#footer">{ t(TranslationKeys.HEADER_DETAILS.CONTACT) }</a></li>
+                            <li><a href="#" onClick={ () => setMenuIsOpen(!menuIsOpen) }>{ t(TranslationKeys.HEADER_DETAILS.HOME) }</a></li>
+                            <li><a href="#footer" onClick={ () => setMenuIsOpen(!menuIsOpen) }>{ t(TranslationKeys.HEADER_DETAILS.CONTACT) }</a></li>
                         </ul>
                     </nav>
                 </div>
