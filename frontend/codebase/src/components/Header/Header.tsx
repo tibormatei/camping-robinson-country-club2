@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Languages from "@/components/Languages/Languages";
@@ -11,6 +11,17 @@ import "./Header.css";
 export default function Header() {
     const { t } = useTranslation();
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (menuIsOpen === true) {
+            const closeMenuOnMainClick = () => setMenuIsOpen(false);
+            const main = document.querySelector("main");
+            
+            main?.addEventListener("click", closeMenuOnMainClick);
+            // Cleanup function to remove the event listener when the component unmounts or menuIsOpen changes.
+            return () => main?.removeEventListener("click", closeMenuOnMainClick);
+        }
+    }, [menuIsOpen]);
 
     return (
         <header className="header">
