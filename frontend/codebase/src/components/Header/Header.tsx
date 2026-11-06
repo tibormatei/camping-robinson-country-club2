@@ -46,10 +46,10 @@ export default function Header() {
                 }
             };
 
-            desktopWindow?.addEventListener("change", closeMenuOnDesktopWindow);
-            return () => desktopWindow?.removeEventListener("change", closeMenuOnDesktopWindow);
+            desktopWindow.addEventListener("change", closeMenuOnDesktopWindow);
+            return () => desktopWindow.removeEventListener("change", closeMenuOnDesktopWindow);
         }
-    }, []);
+    }, [menuIsOpen]);
 
     return (
         <header className="header">
@@ -75,8 +75,8 @@ export default function Header() {
                 <div className="header-nav-container">
                     <nav className="header-nav-menu">
                         <ul className="header-menu">
-                            <li><a href="#" onClick={ () => setMenuIsOpen(!menuIsOpen) }>{ t(TranslationKeys.HEADER_DETAILS.HOME) }</a></li>
-                            <li><a href="#footer" onClick={ () => setMenuIsOpen(!menuIsOpen) }>{ t(TranslationKeys.HEADER_DETAILS.CONTACT) }</a></li>
+                            <li><a href="#" onClick={ () => setMenuIsOpen(false) }>{ t(TranslationKeys.HEADER_DETAILS.HOME) }</a></li>
+                            <li><a href="#footer" onClick={ () => setMenuIsOpen(false) }>{ t(TranslationKeys.HEADER_DETAILS.CONTACT) }</a></li>
                         </ul>
                     </nav>
                 </div>
