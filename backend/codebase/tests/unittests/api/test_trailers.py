@@ -21,3 +21,5 @@ class TestTrailers:
         assert response.status_code == status.HTTP_200_OK
         data = response.json()
         assert isinstance(data[trailers_field], trailers_field_expected_type)
+        if trailers_field_expected_type is int:
+            assert not isinstance(data[trailers_field], bool)

@@ -1,5 +1,6 @@
-import pytest
 from typing import get_origin, get_args
+
+import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 
@@ -26,6 +27,8 @@ class TestTent:
         origin_type = get_origin(tent_field_expected_type)
         if origin_type is None:
             assert isinstance(data[tent_field], tent_field_expected_type)
+            if tent_field_expected_type is int:
+                assert not isinstance(data[tent_field], bool)
         else:
             (item_type,) = get_args(tent_field_expected_type)
             assert all(isinstance(item, item_type) for item in data[tent_field])
