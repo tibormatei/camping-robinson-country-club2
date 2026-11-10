@@ -124,7 +124,7 @@ else
     echo "✅ Found backend container."
     "${CONTAINER_RUNTIME}" compose exec backend pytest
   else
-    echo "💤 The backend container is not running, than creating a new test container."
+    echo "💤 The backend container is not running, then creating a new test container."
     "${CONTAINER_RUNTIME}" compose run --rm backend pytest
   fi
 fi
