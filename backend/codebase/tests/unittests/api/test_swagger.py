@@ -1,4 +1,5 @@
 import pytest
+from collections.abc import Iterator
 from fastapi import status
 from fastapi.testclient import TestClient
 
@@ -8,14 +9,14 @@ from robinson.config.loader import get_config
 
 class TestSwagger:
     @pytest.fixture(name="client_no_swagger")
-    def client_disabled_swagger(self, monkeypatch: pytest.MonkeyPatch) -> TestClient:
+    def client_disabled_swagger(self, monkeypatch: pytest.MonkeyPatch) -> Iterator[TestClient]:
         monkeypatch.setenv("APP_ENABLE_SWAGGER", "false")
         get_config.cache_clear()
         yield TestClient(create_app())
         get_config.cache_clear()
 
     @pytest.fixture(name="client_swagger")
-    def client_enabled_swagger(self, monkeypatch: pytest.MonkeyPatch) -> TestClient:
+    def client_enabled_swagger(self, monkeypatch: pytest.MonkeyPatch) -> Iterator[TestClient]:
         monkeypatch.setenv("APP_ENABLE_SWAGGER", "true")
         get_config.cache_clear()
         yield TestClient(create_app())
