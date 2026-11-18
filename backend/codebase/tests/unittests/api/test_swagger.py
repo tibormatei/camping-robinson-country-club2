@@ -22,7 +22,7 @@ class TestSwagger:
         yield TestClient(create_app())
         get_config.cache_clear()
 
-    @pytest.mark.parametrize("path", ["/api/docs", "/api/openapi.json"])
+    @pytest.mark.parametrize("path", ["/api/docs", "/api/openapi.json", "/api/redoc"])
     def test_no_docs_when_swagger_disabled(self, client_no_swagger: TestClient, path: str) -> None:
         assert client_no_swagger.get(path).status_code == status.HTTP_404_NOT_FOUND
 
