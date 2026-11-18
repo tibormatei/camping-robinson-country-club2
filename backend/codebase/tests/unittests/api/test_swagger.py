@@ -1,5 +1,6 @@
-import pytest
 from collections.abc import Iterator
+
+import pytest
 from fastapi import status
 from fastapi.testclient import TestClient
 
@@ -22,10 +23,14 @@ class TestSwagger:
         yield TestClient(create_app())
         get_config.cache_clear()
 
-    @pytest.mark.parametrize("path", ["/api/docs", "/api/openapi.json", "/api/redoc"])
+    @pytest.mark.parametrize("path", ["/api/docs", "/api/openapi.json", "/api/redoc", "/docs", "/openapi.json", "/redoc"])
     def test_no_docs_when_swagger_disabled(self, client_no_swagger: TestClient, path: str) -> None:
         assert client_no_swagger.get(path).status_code == status.HTTP_404_NOT_FOUND
 
     @pytest.mark.parametrize("path", ["/api/docs", "/api/openapi.json"])
     def test_docs_page_when_swagger_enabled(self, client_swagger: TestClient, path: str) -> None:
         assert client_swagger.get(path).status_code == status.HTTP_200_OK
+
+    @pytest.mark.parametrize("path", ["/api/redoc", "/docs", "/openapi.json", "/redoc"])
+    def test_other_paths_do_not_exist_when_swagger_enabled(self, client_swagger: TestClient, path: str) -> None:
+        assert client_swagger.get(path).status_code == status.HTTP_404_NOT_FOUND
