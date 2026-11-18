@@ -11,13 +11,15 @@ class TestSwagger:
     def client_disabled_swagger(self, monkeypatch: pytest.MonkeyPatch) -> TestClient:
         monkeypatch.setenv("APP_ENABLE_SWAGGER", "false")
         get_config.cache_clear()
-        return TestClient(create_app())
+        yield TestClient(create_app())
+        get_config.cache_clear()
 
     @pytest.fixture(name="client_swagger")
     def client_enabled_swagger(self, monkeypatch: pytest.MonkeyPatch) -> TestClient:
         monkeypatch.setenv("APP_ENABLE_SWAGGER", "true")
         get_config.cache_clear()
-        return TestClient(create_app())
+        yield TestClient(create_app())
+        get_config.cache_clear()
 
     @pytest.mark.parametrize("path", ["/api/docs", "/api/openapi.json"])
     def test_no_docs_when_swagger_disabled(self, client_no_swagger: TestClient, path: str) -> None:
