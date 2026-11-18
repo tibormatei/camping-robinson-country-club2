@@ -4,30 +4,39 @@ from robinson.api.impl.rental import router as rental_router
 from robinson.config.loader import get_config
 
 
-# Init
-api_prefix: str = get_config().boot.app.api.prefix
-swagger_enabled: bool = get_config().boot.app.swagger.enabled
+def create_app() -> FastAPI:
+    """
+    Builds the FastAPI app from the current config (the environment variables).
+    """
 
-# FastAPI app initialization
-app = FastAPI(
-    root_path=get_config().boot.app.api.root,
-    title=get_config().boot.app.api.schema.title,
-    description=get_config().boot.app.api.schema.description,
-    version=get_config().boot.app.api.schema.version,
-    docs_url=f"{api_prefix}/docs" if swagger_enabled else None,
-    redoc_url=None,  # f"{api_prefix}/redoc" if swagger_enabled else None,
-    openapi_url=f"{api_prefix}/openapi.json" if swagger_enabled else None,
-    redirect_slashes=False,
-)
+    # Init
+    api_prefix: str = get_config().boot.app.api.prefix
+    swagger_enabled: bool = get_config().boot.app.swagger.enabled
 
-@app.get(f"{api_prefix}/health", tags=["health"])
-async def health() -> dict[str, str]:
-    return {"status": "ok"}
+    # FastAPI app initialization
+    app = FastAPI(
+        root_path=get_config().boot.app.api.root,
+        title=get_config().boot.app.api.schema.title,
+        description=get_config().boot.app.api.schema.description,
+        version=get_config().boot.app.api.schema.version,
+        docs_url=f"{api_prefix}/docs" if swagger_enabled else None,
+        redoc_url=None,  # f"{api_prefix}/redoc" if swagger_enabled else None,
+        openapi_url=f"{api_prefix}/openapi.json" if swagger_enabled else None,
+        redirect_slashes=False,
+    )
 
-# Routes initialization
-api_routers = [
-    rental_router,
-]
+    @app.get(f"{api_prefix}/health", tags=["health"])
+    async def health() -> dict[str, str]:
+        return {"status": "ok"}
 
-for router in api_routers:
-    app.include_router(router, prefix=api_prefix)
+    # Routes initialization
+    api_routers = [
+        rental_router,
+    ]
+
+    for router in api_routers:
+        app.include_router(router, prefix=api_prefix)
+
+    return app
+
+app = create_app()
