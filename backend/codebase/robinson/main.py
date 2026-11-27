@@ -7,7 +7,9 @@ from robinson.config.loader import get_config
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("-m", "--mode", default="DEVELOPMENT", dest="mode", help="Mode of the application [DEVELOPMENT, PRODUCTION].")
+    parser.add_argument(
+        "-m", "--mode", default="DEVELOPMENT", dest="mode", help="Mode of the application [DEVELOPMENT, PRODUCTION]."
+    )
     args = parser.parse_args()
 
     # Get configuration from config

@@ -82,7 +82,7 @@
 /*----------------------
   Mobile and Tablets
 ------------------------*/
-@media only screen and (min-width: 380px) and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
 
     .header-mobile-menu-button {
         display: inline;

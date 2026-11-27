@@ -42,7 +42,7 @@ footer p {
 /*----------------------
   Mobile and Tablets
 ------------------------*/
-@media only screen and (min-width: 380px) and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     footer p {
         font-size: 0.75rem;
         margin: 3px;

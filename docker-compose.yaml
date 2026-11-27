@@ -20,6 +20,9 @@ services:
       # The source code: edits on the host reach the container (--reload).
       # The venv is in /app/.venv, outside this mount, so nothing shadows it.
       - ./backend/codebase:/app/codebase
+    depends_on:
+      appdb:
+        condition: service_healthy
 
   frontend:
     build:
@@ -40,5 +43,25 @@ services:
       # node_modules lives in a named volume, so the host's one never shadows it.
       - frontend_node_modules:/app/codebase/node_modules
 
+  appdb:
+    build:
+      context: ./appdb
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: ${DB_POSTGRES_DBNAME}
+      POSTGRES_USER: ${DB_POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
+    ports:
+      - "${DB_POSTGRES_PORT}:${DB_POSTGRES_PORT}"
+    volumes:
+      - appdb-volume:/var/lib/postgresql/robinsondata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_POSTGRES_USERNAME} -d ${DB_POSTGRES_DBNAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
 volumes:
+  appdb-volume:
   frontend_node_modules:

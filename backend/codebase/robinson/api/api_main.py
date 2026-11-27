@@ -7,6 +7,8 @@ from robinson.config.loader import get_config
 def create_app() -> FastAPI:
     """
     Builds the FastAPI app from the current config (the environment variables).
+
+    app = create_app()
     """
 
     # Init
