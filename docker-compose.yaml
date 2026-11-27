@@ -52,11 +52,11 @@ services:
       POSTGRES_USER: ${DB_POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
     ports:
-      - "${DB_POSTGRES_PORT}:${DB_POSTGRES_PORT}"
+      - "127.0.0.1:${DB_POSTGRES_PORT}:5432"
     volumes:
-      - appdb-volume:/var/lib/postgresql/robinsondata
+      - appdb-volume:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_POSTGRES_USERNAME} -d ${DB_POSTGRES_DBNAME}"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U ${DB_POSTGRES_USERNAME} -d ${DB_POSTGRES_DBNAME}"]
       interval: 5s
       timeout: 5s
       retries: 5

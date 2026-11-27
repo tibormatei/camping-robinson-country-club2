@@ -4,6 +4,6 @@ from robinson.config.models.postgres_database_config import PostgresDatabaseConf
 
 
 @dataclass(frozen=True)
-class DatabaseConfig():
+class DatabaseConfig:
     provider: str = "postgres"
     postgres: PostgresDatabaseConfig = field(default_factory=PostgresDatabaseConfig)
